@@ -6,7 +6,88 @@ using System.Threading.Tasks;
 
 namespace SmartHomeController
 {
-    internal class User
+    public class User
     {
+        // private fields
+        private int userId;
+        private string userName;
+        private string password;
+        private string contactInfo;
+        private bool isloggedIn;
+
+        //public properties
+        public int UserId
+        {
+            get { return userId; }
+            set { userId = value; }
+        }
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+        public string ContactInfo
+        {
+            get { return contactInfo; }
+            set { contactInfo = value; }
+        }
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+        public bool IsLoggedIn
+        {
+            get { return isloggedIn; }
+            set { isloggedIn = value; }
+        }
+
+        // Constructor
+        public User(int userId, 
+                    string userName, 
+                    string password, 
+                    string contactInfo, 
+                    bool isLoggedIn)
+        {
+            UserId = userId;
+            UserName = userName;
+            Password = password;
+            ContactInfo = contactInfo;
+            IsLoggedIn = isLoggedIn;
+        }
+
+        //methods
+        public bool Login(string userName, string password)
+        {
+            if (UserName == userName && Password == password)
+            {
+                IsLoggedIn = true;
+                Console.WriteLine("Login Succesful");
+            }
+            else
+            {
+                IsLoggedIn = false;
+                Console.WriteLine($" login failed. User {userName} or pssword is incorrect");
+            }
+            return IsLoggedIn;
+        }
+
+        public bool Logout()
+        {
+            // check if IsLogedin = true
+            // if they are logged in then log the user out 
+            if (IsLoggedIn)
+            {
+                IsLoggedIn = false;
+                Console.WriteLine("User is logged out successfully");
+            }
+            else
+            {
+                Console.WriteLine("User is not logged in");
+            }
+            return IsLoggedIn;
+        }
     }
 }
+
+
